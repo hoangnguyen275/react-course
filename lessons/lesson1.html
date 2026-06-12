@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Lesson 1</title>
+  </head>
+  <body>
+    <div class="js-container1"></div>
+
+    <div class="js-container2"></div>
+
+    <div class="js-container3"></div>
+
+    <div class="js-clock-container"></div>
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
+
+    <script type="text/babel">
+      const goodJobButton = (
+        <button>Good job!</button>
+      );
+
+      const paragraph = (
+        <p>My name is DEPSTOC</p>
+      );
+
+      const cartFeatures = (
+        <div>
+          <p>
+            Cotton socks
+          </p>
+          <p>
+            Price: $10
+          </p>
+          <button>
+            Add to Cart
+          </button>
+        </div>
+      );
+
+      const currentDay = dayjs().format('MMM D');
+
+      const productCost = 26;
+      const shippingCost = 5;
+      const totalPrice = (
+        <div>
+          <p>Product cost: ${productCost}</p>
+          <p>Shipping cost: ${shippingCost}</p>
+          <p>totalPrice: ${productCost + shippingCost}</p>
+          <button>Place your order</button>
+          <p>Today is {currentDay}</p>
+        </div>
+      );
+
+      const currentTime = (
+        <div>
+          Current time: {dayjs().format('HH:mm:ss')}
+        </div>
+      );
+
+      const container1 = document.querySelector('.js-container1');
+      const container2 = document.querySelector('.js-container2');
+      const container3 = document.querySelector('.js-container3')
+      ReactDOM.createRoot(container1).render(goodJobButton);
+      ReactDOM.createRoot(container2).render(totalPrice);
+      ReactDOM.createRoot(container3).render(cartFeatures);
+      
+      const root = ReactDOM.createRoot(document.querySelector('.js-clock-container'));
+      root.render(currentTime);
+
+      setInterval(() => {
+        const currentTime = (
+          <div>
+            Current time: {dayjs().format('HH:mm:ss')}
+          </div>
+        );
+        root.render(currentTime);
+      }, 1000);
+    </script>
+  </body>
+</html>

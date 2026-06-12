@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>React Basics</title>
+    <style>
+      
+      body{
+        margin: 0;
+      }
+
+      .buttons-container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: rgb(222, 222, 222);
+        column-gap: 10px;
+      }
+
+      .click-button, .reset-button, .auto-click-button{
+        background-color: rgb(25, 135, 84);
+        color: white;
+        padding: 8px 10px;
+        border: none;
+      }
+
+
+    </style>
+  </head>
+  <body>
+    <div class="js-container"></div>
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+      function App(){
+        const [click, setClick] = React.useState(0);
+
+        const clickRef = React.useRef(null);
+
+        function clickButton(){
+          setClick(click + 1);
+        }
+
+        function resetClick(){
+          setClick(0);
+        }
+
+        function autoClick(){
+
+          const buttonElem = clickRef.current;
+          setInterval(()=> {
+            buttonElem.click();
+          }, 1000);
+        }
+
+        return (
+          <div className="buttons-container">
+            <button onClick={clickButton}
+              ref={clickRef}
+              className="click-button"
+            >
+              Clicked {click} times  
+            </button>
+
+            <button onClick={resetClick}
+              className="reset-button"
+            >
+              Reset  
+            </button>
+
+            <button onClick={autoClick}
+              className="auto-click-button"
+            >
+              Auto Click
+            </button>
+          </div>
+        );
+      }
+
+
+
+      const container = document.querySelector('.js-container');
+      ReactDOM.createRoot(container).render(<App/>);
+    </script>
+  </body>
+</html>

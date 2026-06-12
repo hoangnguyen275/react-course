@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>React Basics</title>
+  </head>
+  <body>
+    <div class="js-container"></div>
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+
+      function CountButton({count, setCount}){
+
+        function click(){
+          setCount(count + 1);
+        }
+        return (
+          <button
+            onClick={click}
+          >
+            Clicked {count} {count <= 1 ? <span>time</span> : <span>times</span>}
+          </button>
+        );
+      }
+
+      function ResetButton({setCount}){
+        
+        function click(){
+          setCount(0);
+        }
+
+        return (
+          <button
+            onClick={click}
+          >
+            Reset
+          </button>
+        );
+      }
+
+      function App(){
+        const [count, setCount] = React.useState(0);
+        return (
+          <>
+            <CountButton
+              count={count}
+              setCount={setCount}
+            />
+
+            <CountButton
+              count={count}
+              setCount={setCount}
+            />
+
+            <ResetButton
+              setCount={setCount}
+            />
+          </>
+        );
+      }
+
+
+
+
+
+      const container = document.querySelector('.js-container');
+      ReactDOM.createRoot(container).render(<App/>);
+    </script>
+  </body>
+</html>

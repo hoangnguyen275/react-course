@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>React Basics</title>
+    <style>
+      .app-container{
+        display: flex;
+        flex-direction: column;
+        row-gap: 20px;
+      }
+
+      .inputs{
+        display: flex;
+        column-gap: 10px;
+        width: 300px;
+      }
+
+      .inputs-container{
+        display: flex;
+        flex-direction: column;
+        row-gap: 10px;
+      }
+
+
+      .buttons-container{
+        display: flex;
+        column-gap: 10px;
+      }
+
+      .show-button-container{
+        display: flex;
+        align-items: end;
+      }
+
+      .login-button{
+        background-color: rgb(0, 123, 255);
+        color: white;
+        padding: 8px 12px;
+        border: none;
+        border-radius: 3px;
+      }
+
+      .sign-up-button{
+        background-color: rgb(0, 123, 255);
+        color: white;
+        padding: 8px 12px;
+        border: none;
+        border-radius: 3px;
+      }
+
+      .show-button{
+        opacity: 0;
+      }
+
+      .show-button-visible{
+        opacity: 1;
+      }
+
+    </style>
+  </head>
+  <body>
+    <div class="js-container"></div>
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+
+      function Inputs(){
+        const [showPassword, setShowPassword] = React.useState(false);
+
+        const [isTyping, setIsTyping] = React.useState('');
+
+        function revealPassword(){
+          if (!showPassword){
+            setShowPassword(true);
+          } else{
+            setShowPassword(false);
+          }
+        }
+
+        function saveTyping(event){
+          setIsTyping(event.target.value);
+          if (!isTyping){
+            setShowPassword(false);
+          }
+        }
+        
+        return (
+          <div className="inputs">
+            <div className="inputs-container">
+              <input className="email-input" placeholder="Email"/>
+              <input className="password-input" placeholder="Password"
+              onChange={saveTyping}
+              type={!showPassword ? 'password' : 'text'}
+              />
+            </div>
+            <div className="show-button-container">
+              <button className={!isTyping ? 'show-button' : 'show-button-visible'}
+                onClick={revealPassword}
+              >
+                {!showPassword ? 'show' : 'hide'}
+              </button>
+            </div>
+          </div>
+        );
+      }
+
+      function Buttons(){
+        return (
+          <div className="buttons-container">
+            <button className="login-button">
+              Login  
+            </button>
+            <button className="sign-up-button">
+              Sign up  
+            </button>  
+          </div>
+        );
+      }
+
+      function App(){
+        return (
+          <div className="app-container"> 
+            <p>Hello, Weclome to my website</p>
+            <Inputs/>
+            <Buttons/>
+          </div>
+        );
+      }
+
+
+      const container = document.querySelector('.js-container');
+      ReactDOM.createRoot(container).render(<App/>);
+    </script>
+  </body>
+</html>
