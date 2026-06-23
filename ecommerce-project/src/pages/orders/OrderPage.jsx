@@ -4,7 +4,7 @@ import { useState, useEffect, Fragment } from 'react'
 import { Header } from '../../components/Header.jsx'
 import { Link } from 'react-router'
 import { formatMoney } from '../../utils/money.js'
-import BuyAgainImage from '../assets/images/icons/buy-again.png'
+import BuyAgainImage from '../../assets/images/icons/buy-again.png'
 import './OrderPage.css'
 
 
