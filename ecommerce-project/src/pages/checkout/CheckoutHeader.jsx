@@ -4,7 +4,12 @@ import MobileLogoImage from '../../assets/images/mobile-logo.png'
 import CheckoutLockIcon from '../../assets/images/icons/checkout-lock-icon.png'
 import './checkout-header.css'
 
-export function CheckoutHeader(){
+export function CheckoutHeader({cart}){
+  let totalQuanity = 0;
+
+  cart.forEach((cartItems) => {
+    totalQuanity += cartItems.quantity;
+  });
   return (
     <div className="checkout-header">
       <div className="header-content">
@@ -17,7 +22,7 @@ export function CheckoutHeader(){
 
         <div className="checkout-header-middle-section">
           Checkout (<Link className="return-to-home-link"
-            to="/">3 items</Link>)
+            to="/">{totalQuanity} items</Link>)
         </div>
 
         <div className="checkout-header-right-section">
