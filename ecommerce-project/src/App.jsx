@@ -20,11 +20,13 @@ function App() {
     loadCart();
   }, []);
 
+  window.axios = axios;
+
   return (
     <Routes>
       <Route index element={<HomePage cart={cart} loadCart={loadCart}/>} />
       <Route path="checkout" element={<CheckoutPage cart={cart} loadCart={loadCart}/>} />
-      <Route path="orders" element={<OrderPage cart={cart}/>} />
+      <Route path="orders" element={<OrderPage cart={cart} loadCart={loadCart}/>} />
       <Route path="tracking/:orderId/:productId" element={<TrackingPage cart={cart}/>}/>
       <Route path="*" element={<Error404Page cart={cart}/>} />
     </Routes>    

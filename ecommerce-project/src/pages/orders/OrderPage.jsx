@@ -7,7 +7,7 @@ import BuyAgainImage from '../../assets/images/icons/buy-again.png'
 import './OrderPage.css'
 
 
-export function OrderPage({ cart }) {
+export function OrderPage({ cart, loadCart }) {
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
@@ -31,7 +31,7 @@ export function OrderPage({ cart }) {
       <div className="orders-page">
         <div className="page-title">Your Orders</div>
 
-        <OrderGrid orders={orders} />
+        <OrderGrid orders={orders} loadCart={loadCart} />
       </div>
     </>
   );
