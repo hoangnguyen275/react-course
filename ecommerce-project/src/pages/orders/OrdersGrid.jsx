@@ -56,7 +56,8 @@ export function OrderGrid({orders, loadCart}) {
                         {orderProduct.product.name}
                       </div>
                       <div className="product-delivery-date">
-                        Arriving on: {dayjs(orderProduct.estimatedDeliveryTimeMs).format('MMMM D')}
+                        {dayjs().valueOf() >= orderProduct.estimatedDeliveryTimeMs ? 'Delivered on: ' : 'Arrving on: '} 
+                        { dayjs(orderProduct.estimatedDeliveryTimeMs).format('MMMM D')}
                       </div>
                       <div className="product-quantity">
                         Quantity: {orderProduct.quantity}

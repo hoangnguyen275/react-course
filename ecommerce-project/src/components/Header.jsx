@@ -25,7 +25,6 @@ export function Header({cart}) {
 
   function getSearchItem(){
     navigate(`/?search=${search}`);
-    setSearch('');
   }
 
   function handleKeyDown(event){
@@ -34,10 +33,14 @@ export function Header({cart}) {
     }
   }
 
+  function clearSearch(){
+    setSearch('');
+  }
+
   return (
     <div className="header">
       <div className="left-section">
-        <NavLink to="/" className="header-link">
+        <NavLink to="/" className="header-link" onClick={clearSearch}>
           <img className="logo"
             src={LogoWhiteImage} />
           <img className="mobile-logo"
@@ -54,7 +57,7 @@ export function Header({cart}) {
       </div>
 
       <div className="right-section">
-        <NavLink className="orders-link header-link" to="/orders">
+        <NavLink to="/orders" className="orders-link header-link">
 
           <span className="orders-text">Orders</span>
         </NavLink>
