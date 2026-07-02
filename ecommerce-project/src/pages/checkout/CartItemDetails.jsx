@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useState } from 'react';
 import { formatMoney } from "../../utils/money";
 
-export function CartItemsDetails({cartItem, loadCart}) {
+export function CartItemDetails({cartItem, loadCart}) {
   const [isUpdating, setIsUpdating] = useState(false);
 
   const [quantity, setQuantity] = useState(cartItem.quantity);
@@ -59,31 +59,31 @@ export function CartItemsDetails({cartItem, loadCart}) {
 
   return (
     <>
-      <img className="product-image"
+      <img data-testid="product-image" className="product-image"
         src={cartItem.product.image} />
 
       <div className="cart-item-details">
-        <div className="product-name">
+        <div data-testid="product-name" className="product-name">
           {cartItem.product.name}
         </div>
-        <div className="product-price">
+        <div data-testid="product-price" className="product-price">
           {formatMoney(cartItem.product.priceCents)}
         </div>
         <div className="product-quantity">
           <span>
-            Quantity: {isUpdating ? <input onChange={saveQuantity} onKeyDown={handleKeyDown} className="update-quantity-input" type="text" /> : ''} <span className="quantity-label">{cartItem.quantity}</span>
+            Quantity: {isUpdating ? <input data-testid="quantity-input" onChange={saveQuantity} onKeyDown={handleKeyDown} className="update-quantity-input" type="text" /> : ''} <span data-testid="product-quantity" className="quantity-label">{cartItem.quantity}</span>
           </span>
-          <span className="update-quantity-link link-primary"
+          <span data-testid="update-quantity" className="update-quantity-link link-primary"
             onClick={updateQuantity}>
             Update
           </span>
-          <span className="delete-quantity-link link-primary"
+          <span data-testid="delete-quantity" className="delete-quantity-link link-primary"
             onClick={deleteCartItem}>
             Delete
           </span>
         </div>
         {invalidUpdate ? 
-        <div className="invalid-update">
+        <div data-testid="invalid-message" className="invalid-update">
           Invalid update!
         </div> : ''}
         

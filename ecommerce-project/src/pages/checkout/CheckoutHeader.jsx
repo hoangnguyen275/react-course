@@ -20,7 +20,7 @@ export function CheckoutHeader({cart}){
           </Link>
         </div>
 
-        <div className="checkout-header-middle-section">
+        <div data-testid="display-quantity" className="checkout-header-middle-section">
           Checkout (<Link className="return-to-home-link"
             to="/">{totalQuanity} items</Link>)
         </div>
