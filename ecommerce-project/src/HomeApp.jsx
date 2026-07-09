@@ -1,9 +1,13 @@
 import { NavLink } from "react-router";
 
-export function HomeApp(){
+export function HomeApp() {
   return (
-    <NavLink to="/EcommerceApp">
-      <span>click here to direct to ecommerce project</span>
-    </NavLink>
+    <>
+      <link rel="icon" type="image/svg+xml" href="user.png" />
+
+      <NavLink to="/EcommerceApp">
+        <span>click here to direct to ecommerce project</span>
+      </NavLink>
+    </>
   );
 }
