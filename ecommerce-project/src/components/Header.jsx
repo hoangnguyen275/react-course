@@ -4,43 +4,50 @@ import LogoWhiteImage from '../assets/images/logo-white.png'
 import MobileLogoWhiteImage from '../assets/images/mobile-logo-white.png'
 import CartIcon from '../assets/images/icons/cart-icon.png'
 import SearchIcon from '../assets/images/icons/search-icon.png'
+import GoBackIcon from '../assets/images/icons/go-back-icon.png'
 import './Header.css';
 
-export function Header({cart}) {
+export function Header({ cart }) {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const searchText = searchParams.get('search');
-  const [search, setSearch] = useState( searchText || '');
-  
+  const [search, setSearch] = useState(searchText || '');
+
   let totalQuanity = 0;
-  
+
   cart.forEach((cartItem) => {
     totalQuanity += cartItem.quantity;
   });
 
-  function saveInput(event){
+  function saveInput(event) {
     const value = event.target.value;
     setSearch(value);
   }
 
-  function getSearchItem(){
-    navigate(`/?search=${search}`);
+  function getSearchItem() {
+    navigate(`/EcommerceApp/?search=${search}`);
   }
 
-  function handleKeyDown(event){
-    if (event.key === 'Enter'){
+  function handleKeyDown(event) {
+    if (event.key === 'Enter') {
       getSearchItem();
     }
   }
 
-  function clearSearch(){
+  function clearSearch() {
     setSearch('');
   }
 
   return (
     <div className="header">
       <div className="left-section">
-        <NavLink to="/" className="header-link" onClick={clearSearch}>
+        <button className="go-back-button">
+          <NavLink to="/">
+            <img className="search-icon" src={GoBackIcon} />
+          </NavLink>
+          <div className="description">Click here to get back to portfolio</div>
+        </button>
+        <NavLink to="/EcommerceApp" className="header-link" onClick={clearSearch}>
           <img className="logo"
             src={LogoWhiteImage} />
           <img className="mobile-logo"
@@ -57,12 +64,12 @@ export function Header({cart}) {
       </div>
 
       <div className="right-section">
-        <NavLink to="/orders" className="orders-link header-link">
+        <NavLink to="/EcommerceApp/orders" className="orders-link header-link">
 
           <span className="orders-text">Orders</span>
         </NavLink>
 
-        <NavLink className="cart-link header-link" to="/checkout">
+        <NavLink className="cart-link header-link" to="/EcommerceApp/checkout">
           <img className="cart-icon" src={CartIcon} />
           <div className="cart-quantity">{totalQuanity}</div>
           <div className="cart-text">Cart</div>

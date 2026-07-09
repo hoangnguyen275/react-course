@@ -16,13 +16,42 @@
 }
 
 .header .left-section {
+  display: flex;
   width: 208px;
+  align-items: center;
+  justify-content: center;
 }
 
 @media (max-width: 800px) {
   .header .left-section {
     width: unset;
   }
+}
+
+.go-back-button{
+  background-color: black;
+  border: none;
+  border-radius: 5px;
+  position: relative;
+}
+
+.go-back-button .description{
+  padding-left: 50px;
+  position: absolute;
+  background-color: gray;
+  color: white;
+  padding: 4px 8px 4px 8px;
+  border-radius: 2px;
+  font-size: 12px;
+  bottom: -30px;
+  opacity: 0;
+  transition: opacity 0.15s;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.go-back-button:hover .description{
+  opacity: 1;
 }
 
 .header .header-link {
@@ -151,3 +180,5 @@
   width: 26px;
   text-align: center;
 }
+
+
