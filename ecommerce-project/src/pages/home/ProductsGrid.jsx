@@ -2,7 +2,6 @@ import { Product } from './Product';
 import CheckMarkIcon from '../../assets/images/icons/checkmark.png';
 
 export function ProductsGrid({ products, loadCart }) {
-  console.log(products);
   if (products.length > 0) {
     return (
       <div className="products-grid">
