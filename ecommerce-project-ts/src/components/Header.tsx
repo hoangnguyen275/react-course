@@ -7,7 +7,15 @@ import SearchIcon from '../assets/images/icons/search-icon.png'
 import GoBackIcon from '../assets/images/icons/go-back-icon.png'
 import './Header.css';
 
-export function Header({ cart }) {
+type HeaderProps = {
+  cart: {
+    productId: string;
+    quantity: number;
+    deliveryOptionId: string;
+  }[];
+};
+
+export function Header({ cart }: HeaderProps) {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const searchText = searchParams.get('search');
@@ -19,7 +27,7 @@ export function Header({ cart }) {
     totalQuanity += cartItem.quantity;
   });
 
-  function saveInput(event) {
+  function saveInput(event: React.ChangeEvent<HTMLInputElement>) {
     const value = event.target.value;
     setSearch(value);
   }
@@ -28,7 +36,7 @@ export function Header({ cart }) {
     navigate(`/EcommerceApp/?search=${search}`);
   }
 
-  function handleKeyDown(event) {
+  function handleKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
     if (event.key === 'Enter') {
       getSearchItem();
     }
@@ -51,7 +59,7 @@ export function Header({ cart }) {
           <img className="logo"
             src={LogoWhiteImage} />
           <img className="mobile-logo"
-            src={LogoWhiteImage} />
+            src={MobileLogoWhiteImage} />
         </NavLink>
       </div>
 
