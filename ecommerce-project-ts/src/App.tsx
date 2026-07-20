@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router';
-import { HomeApp } from './HomeApp';
-import { EcommerceApp } from './EcommerceApp';
+import { HomeApp } from './apps/portfolio/HomeApp';
+import { EcommerceApp } from './apps/EcommerceApp';
 import './App.css'
 
 function App(){

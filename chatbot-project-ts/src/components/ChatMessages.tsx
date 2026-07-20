@@ -1,22 +1,32 @@
-import { useRef, useEffect } from 'react'
+import { useRef, useEffect, type DependencyList } from 'react'
 import { ChatMessage } from './ChatMessage'
 import './ChatMessages.css'
 
-function useAutoScroll(dependencies){
-  const containerRef = useRef(null);
+type ChatMessagesProps = {
+  chatMessages: {
+    id: string;
+    message: string;
+    sender: 'user' | 'robot';
+    timeSent?: string;
+  }[];
+};
+
+function useAutoScroll(dependencies: DependencyList){
+  const containerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const containerElem = containerRef.current;
     if (containerElem){
       containerElem.scrollTop = containerElem.scrollHeight;
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, dependencies);
 
   return containerRef;
 }
 
 
-function ChatMessages({chatMessages}){
+function ChatMessages({chatMessages}: ChatMessagesProps){
 
   const chatMessagesRef = useAutoScroll([chatMessages]);
 

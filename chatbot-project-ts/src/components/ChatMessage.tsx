@@ -1,9 +1,16 @@
 import RobotProfileImage from '../assets/robot.png'
 import UserProfileImage from '../assets/user.png'
+import LoadingSpinnerGif from '../assets/loading-spinner.gif'
 import './ChatMessage.css'
 import dayjs from 'dayjs'
 
-export function ChatMessage({message, sender, timeSent}){
+type ChatMessageProps = {
+  message: string;
+  sender: 'user' | 'robot';
+  timeSent?: string;
+};
+
+export function ChatMessage({message, sender, timeSent}: ChatMessageProps){
   //const message = props.message;
   //cosnt sender = sender.message;
   //const {sender, message} = props;
@@ -38,7 +45,10 @@ export function ChatMessage({message, sender, timeSent}){
           )}
           <div className="chat-message-text">
             <div>
-              {message}
+              {message === 'isLoading' ?
+                <img className="loading-spinner-gif" src={LoadingSpinnerGif}/> :
+                message
+              }
             </div>
             {timeSent ? 
             <div className="message-time">
